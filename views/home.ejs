@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <title>OAuth Tutorials</title>
+        <link href="/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <% if (user) { %>
+                    <li><a href="/logout">Log out</a></li>
+                    <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <% } %>        
+            </ul>
+
+            
+        </nav>
+        <main>
+            
+            <form method="POST" action="/">
+                <input type= "text" name="post" placeholder="Enter post here...." />
+                <input type="text" name="username" value="<%= user.username %>" hidden/>
+                <input type="submit" value="Post" />
+            </form> 
+            <h1>Posts</h1>
+            <% if(posts.length>0) { %> 
+            <ul>
+                    <!-- <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li> -->
+                    <% for(var i=0; i<posts.length ; i++){  %>
+                    <li class="posts"><strong><%= posts[i].username %> : </strong><%= posts[i].post %></li>
+                    <% } %>
+            </ul>
+            <% } else { %>
+                <p><i>No posts to display</i></p>
+            <% } %>
+
+        </main>
+        
+    
+      
+    </body>
+</html>
